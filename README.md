@@ -1,35 +1,42 @@
-# habits-2
+# Habit Tracker App
 
-This template should help get you started developing with Vue 3 in Vite.
+A simple and effective habit-tracking application built with **Vue.js**. Track your daily habits, visualize progress, and build consistency with ease.
 
-## Recommended IDE Setup
+## 🚀 Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- 📅 **Daily Habit Tracking** – Log your habits and view progress.
+- 🎨 **User-friendly UI** – Intuitive design with smooth navigation.
+- 🔄 **Vue Router Navigation** – Seamless page transitions.
+- 💾 **LocalStorage Persistence** – Save habits even after refresh.
+- 📆 **Date Navigation** – Browse past and future days.
+- ✨ **Custom Categories** – Organize habits with categories.
+- 🛠️ **Onboarding Screen** – Guides users before first use.
 
-## Customize configuration
+---
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## 🛠️ Tech Stack
 
-## Project Setup
+- **Vue.js** – Frontend framework
+- **Vue Router** – Navigation management
+- **LocalStorage** – Data persistence
+
+---
+
+## 📥 Installation
+
+Clone the repository and install dependencies:
 
 ```sh
+# Clone the repo
+git clone https://github.com/tomska888/testukas.git
+cd testukas
+
+# Install dependencies
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
+# Start the development server
 npm run build
-```
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
+# Show preview
+npm run preview
 ```

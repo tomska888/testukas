@@ -8,17 +8,30 @@
         <p>Track your daily habits and stay on top of your goals!</p>
       </div>
       <div v-if="currentStep === 1">
-        <p>Use the navigation to check or mark habits for previous days.</p>
+        <p>Use the navigation arrows to check habits for previous days.</p>
       </div>
       <div v-if="currentStep === 2" id="onboardCate">
         <input type="text" v-model="newCategoryName" id="onboardCatText" placeholder="Enter Category Name" />
-        <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
         <button @click="addCategoryHandler" id="onboardAddCat">Add Category</button>
-      </div>
-      <div v-if="currentStep === 3" id="onbardHabit">
-        <input type="text" v-model="habitName" id="onboardHabitText" placeholder="Enter Habit Name" />
         <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
-        <button @click="addHabitHandler" id="onboardAddHabit">Add Habit</button>
+      </div>
+      <div v-if="currentStep === 3" id="onboardHabit">
+        <input
+          type="text"
+          v-model="habitName"
+          id="onboardHabitText"
+          placeholder="Enter Habit Name"
+          :disabled="habitAdded"
+        />
+        <button
+          v-if="!habitAdded"
+          @click="addHabitHandler"
+          id="onboardAddHabit"
+        >
+          Add Habit
+        </button>
+        <p v-if="habitAdded" class="success-message">Habit successfully added. Please finish onboarding.</p>
+        <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
       </div>
 
       <div class="button-group">
@@ -53,6 +66,7 @@ const newCategoryName = ref('');
 const selectedCategoryId = ref(null);
 const habitName = ref('');
 const errorMessage = ref('');
+const habitAdded = ref(false);
 
 const nextStep = () => {
   if (currentStep.value < steps.length - 1) currentStep.value += 1;
@@ -88,6 +102,11 @@ const addCategoryHandler = () => {
 };
 
 const addHabitHandler = () => {
+  if (habitAdded.value) {
+    errorMessage.value = 'Only one habit can be added during onboarding.';
+    return;
+  }
+
   if (!habitName.value.trim()) {
     errorMessage.value = 'Please enter a habit name.';
     return;
@@ -109,9 +128,9 @@ const addHabitHandler = () => {
     records: [],
   });
 
+  habitAdded.value = true;
   habitName.value = '';
   errorMessage.value = '';
-  nextStep();
 };
 
 const completeOnboarding = () => {
